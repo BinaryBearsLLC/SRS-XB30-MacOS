@@ -28,7 +28,7 @@ export default function Speaker({state,bassLevel}:{state:SpeakerState;bassLevel:
   const root=new T.Group();scene.add(root);let frame=0;const strips:T.Mesh[]=[];const strobes:T.Mesh[]=[];const diaphragms:{mesh:T.Mesh;rest:number}[]=[];
   const color=new T.Color(),a=new T.Color(),b=new T.Color();
   const dispose=(o:T.Object3D)=>{const m=o as T.Mesh;m.geometry?.dispose();if(m.material)for(const mat of Array.isArray(m.material)?m.material:[m.material]){for(const v of Object.values(mat))if(v instanceof T.Texture)v.dispose();mat.dispose()}};
-  new GLTFLoader().load('/models/xb30-v2-refined.glb?v=5',g=>{
+  new GLTFLoader().load('./models/xb30-v2-refined.glb?v=5',g=>{
    if(!alive){g.scene.traverse(dispose);return}
    g.scene.traverse(o=>{const m=o as T.Mesh;if(!m.isMesh)return;
     if(m.name.startsWith('XB30_Neon_Strip')){const old=m.material as T.Material;old.dispose();m.material=new T.MeshBasicMaterial({vertexColors:true});m.geometry.setAttribute('color',new T.BufferAttribute(new Float32Array(m.geometry.attributes.position.count*3),3));strips.push(m)}
@@ -50,5 +50,5 @@ export default function Speaker({state,bassLevel}:{state:SpeakerState;bassLevel:
   }frame=requestAnimationFrame(draw);
   return()=>{alive=false;cancelAnimationFrame(frame);ro.disconnect();controls.dispose();scene.traverse(dispose);composer.dispose();renderer.dispose();renderer.domElement.remove()};
  },[]);
- return <div className="speaker-stage"><div className="stage-halo"/><div ref={host} className="webgl" role="img" aria-label="BinaryBears XB30 3D speaker. Drag to rotate and scroll to zoom."/>{load==='error'&&<img className="speaker-fallback" src="/speaker-refined.png" alt="Refined blue XB30 with BinaryBears wordmark"/>}<span className="model-note">{load==='loading'?'Loading your speaker…':load==='error'?'3D unavailable · studio preview':''}</span></div>
+ return <div className="speaker-stage"><div className="stage-halo"/><div ref={host} className="webgl" role="img" aria-label="BinaryBears XB30 3D speaker. Drag to rotate and scroll to zoom."/>{load==='error'&&<img className="speaker-fallback" src="./speaker-refined.png" alt="Refined blue XB30 with BinaryBears wordmark"/>}<span className="model-note">{load==='loading'?'Loading your speaker…':load==='error'?'3D unavailable · studio preview':''}</span></div>
 }

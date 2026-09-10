@@ -6,7 +6,7 @@ Xcode command-line tools are required. `./build.sh` produces a universal app in 
 
 The app uses a native SwiftUI/AppKit menu bar popover. Its hosting controller follows content size: about 440×443 pt closed and 440×575 pt with EQ. Left-click opens the panel; right-click exposes Quit. No appearance selector or internal scrolling.
 
-The web demo lives in `website/`: `npm ci`, `npm run dev`, `npm run build`; `node app/lighting.test.mjs` checks the 13 lighting modes. `python3 scripts/sync-web-controls.py` refreshes shared native labels/help. Keep the existing Sites project manifest; publishing is a separate, explicitly approved action. The public site can lag local changes until deployment.
+The web demo lives in `website/`: `npm ci`, `npm run dev`, `npm run build`; `node app/lighting.test.mjs` checks the 13 lighting modes. `python3 scripts/sync-web-controls.py` refreshes shared native labels/help. GitHub Pages publishes the static Vite build from `main`; `PAGES_BASE_PATH` comes from configure-pages, so model, music and artwork work under the repository subpath. No server or ChatGPT hosting is required.
 
 ## Device behavior and protocol
 

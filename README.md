@@ -1,7 +1,7 @@
 <p align="center"><img src="assets/AppIcon.png" width="96" alt="XB30 Controller icon"></p>
 <h1 align="center">XB30 Controller</h1>
 <p align="center">Sound and lighting for your SRS-XB30, right in the Mac menu bar.</p>
-<p align="center"><a href="https://github.com/BinaryBearsLLC/SRS-XB30-MacOS/releases/latest">Download for macOS</a> · <a href="https://xb30-control.brainy-daisy-6704.chatgpt.site">Interactive demo</a> · <a href="https://binarybears.com">BinaryBears</a></p>
+<p align="center"><a href="https://github.com/BinaryBearsLLC/SRS-XB30-MacOS/releases/latest">Download for macOS</a> · <a href="https://binarybearsllc.github.io/SRS-XB30-MacOS/">Interactive demo</a> · <a href="https://binarybears.com">BinaryBears</a></p>
 <p align="center"><img src="assets/screenshots/controller.png" width="440" alt="XB30 Controller with sound, lighting, battery and Bluetooth controls"></p>
 
 **macOS 13+ · Apple Silicon & Intel · SRS-XB30 only**
