@@ -20,3 +20,5 @@ main{position:relative;isolation:isolate}.brand-flash{position:fixed;inset:0;z-i
 @media(max-width:950px){main>h1{font-size:clamp(22px,4.5vw,40px);letter-spacing:-1px;margin:30px 0 0}.experience{padding-top:10px}.speaker-stage{height:340px}.bottom{margin-top:0}.nav-actions a{padding:9px 11px;font-size:12px}.brand-flash{background-size:95vw}}
 @media(max-width:600px){nav{height:72px}.brand{font-size:14px}.brand img{width:28px}.nav-actions{gap:6px}.nav-actions a{padding:8px 10px;gap:6px;font-size:11px}.github-button span{display:none}.nav-actions .github-button{padding:9px}.speaker-stage{height:265px}main>h1{font-size:clamp(19px,5.1vw,30px);letter-spacing:-.9px}.bottom{font-size:11px;text-align:center;align-items:center;padding:20px 0}}
 @media(prefers-reduced-motion:reduce){.play-attention{animation:none!important}.brand-flash{display:none}}
+
+@media(max-width:950px){.native-controller .help-button{min-width:24px;min-height:24px}.standby-row{gap:6px}.standby-row>div{gap:3px}.standby-row label{font-size:10px}}
