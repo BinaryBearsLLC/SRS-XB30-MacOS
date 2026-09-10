@@ -25,3 +25,6 @@ releases/
 *.p12
 *.keychain*
 **/__pycache__/
+
+# Reproducible SVG rendering dependencies
+scripts/icon-tools/node_modules/

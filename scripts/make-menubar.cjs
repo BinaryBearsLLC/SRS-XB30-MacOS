@@ -1,6 +1,6 @@
 // The menu-bar artwork is the exact xb30.svg artwork, converted to an alpha mask.
 const fs=require('fs');
-const {Resvg}=require('../.work/icon-tools/node_modules/@resvg/resvg-js');
+const {Resvg}=require('./icon-tools/node_modules/@resvg/resvg-js');
 const source=fs.readFileSync('assets/xb30.svg','utf8');
 const box=source.match(/viewBox="([^"]+)"/)[1];
 let inner=source.slice(source.indexOf('>',source.indexOf('<svg'))+1,source.lastIndexOf('</svg>'));
