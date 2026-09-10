@@ -1296,7 +1296,13 @@ enum AppIcon {
     @objc func togglePopover() {
         guard let button = statusItem.button else { return }
         if popover.isShown { popover.performClose(nil) }
-        else { popover.show(relativeTo:button.bounds,of:button,preferredEdge:.minY); NSApp.activate(ignoringOtherApps:true) }
+        else {
+            NSApp.activate(ignoringOtherApps:true)
+            popover.show(relativeTo:button.bounds,of:button,preferredEdge:.minY)
+            // Accessory apps need a key popover window for active tint and keyboard focus.
+            popover.contentViewController?.view.window?.makeKey()
+
+        }
     }
     func applicationWillTerminate(_ notification: Notification) { controller.transport.disconnect() }
 }
