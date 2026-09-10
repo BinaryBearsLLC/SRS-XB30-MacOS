@@ -1,0 +1,27 @@
+.DS_Store
+build/
+.work/
+website/node_modules/
+website/dist/
+website/.next/
+
+# Preserve downloaded originals locally; commit reproducible derivatives instead.
+3D_Model/meshy-output/*.glb
+3D_Model/refined/*.blend1
+
+# Local browser review session and transient captures
+.playwright-cli/
+output/playwright/
+
+# Private laboratory archive and protected originals stay local.
+.local-archive/
+3D_Model/
+old_research_docs.zip
+releases/
+.env
+.env.*
+!.env.example
+*.p8
+*.p12
+*.keychain*
+**/__pycache__/

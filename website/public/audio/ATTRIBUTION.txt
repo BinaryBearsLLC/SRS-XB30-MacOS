@@ -1,0 +1,15 @@
+Audio assets are NOT covered by the repository MIT license.
+
+New York park - Cinematic EDM Music.wav — szegvari
+https://freesound.org/people/szegvari/sounds/594202/
+CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/
+
+Positive Dance Music — XanTheRock
+https://freesound.org/people/XanTheRock/sounds/818288/
+CC BY-NC 4.0: https://creativecommons.org/licenses/by-nc/4.0/
+Vocal sample: ooh la autotuned 2.flac — Timbre, Freesound.org
+https://freesound.org/people/Timbre/sounds/119064/
+CC BY-NC 4.0. Non-commercial use only.
+
+Both supplied WAVs converted to MP3 stereo at 192 kbps. No arrangement edits.
+Source licenses checked 2026-09-09.

@@ -1,0 +1,23 @@
+{
+  "help": {
+    "sound": "Extra Bass also enables ClearAudio+ on this speaker; they cannot be controlled independently. Choose Flat to turn both off and use manual EQ.",
+    "codec": "Auto prioritizes sound quality and negotiates a supported codec with your audio source. SBC prioritizes connection stability. This is a preference, not a report of the active codec. macOS cannot gain LDAC support through this setting. Changing mode may interrupt audio briefly.",
+    "autoStandby": "Turns the speaker off after about 15 minutes without operations or audio, provided no hands-free phone connection is active. Very quiet AUDIO IN input can also count as silence.",
+    "btStandby": "Allows an already paired Bluetooth device to wake and connect to the speaker. This works only while the speaker is connected to AC power, not on its built-in battery alone. When the speaker is off, an orange power indicator shows Bluetooth standby."
+  },
+  "lightNames": [
+    "Off",
+    "Rave",
+    "Chill",
+    "No flash",
+    "Hot",
+    "Cool",
+    "Strobe",
+    "Magenta",
+    "Cyan",
+    "Lime",
+    "Cinnabar",
+    "Daylight",
+    "Light bulb"
+  ]
+}

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="100 325 1390 970" fill="none">
+<title>XB30 Control</title>
+<defs>
+ <pattern id="grille" width="17" height="17" patternUnits="userSpaceOnUse" patternTransform="matrix(1 -.26 0 1 0 0)"><circle cx="4" cy="4" r="4.2" fill="white"/><circle cx="12.5" cy="12.5" r="4.2" fill="white"/></pattern>
+ <filter id="glow" x="-.2" y="-.2" width="1.4" height="1.4"><feGaussianBlur stdDeviation="6"/></filter>
+ <clipPath id="front"><path d="M559 744 1288 552Q1382 525 1383 627L1383 856Q1383 920 1323 940L569 1143Q465 1175 462 1072L460 856Q456 774 559 744Z"/></clipPath>
+</defs>
+<path fill="#000" d="M158 724Q150 600 274 567L1062 397Q1112 380 1159 396L1355 451Q1443 470 1443 596L1444 868Q1443 980 1343 1009L482 1233Q411 1253 358 1208L215 1097Q168 1065 166 987Z"/>
+<path d="M172 640 443 768M358 1208Q335 1167 335 1091L332 806Q326 691 443 657L1322 455Q1407 431 1414 490Q1420 520 1390 548M1391 936 1425 964M365 1208Q406 1220 453 1165" stroke="white" stroke-width="7"/>
+<path d="M552 722 1290 533Q1406 499 1406 619L1406 868Q1406 941 1331 963L561 1168Q431 1208 431 1080L430 849Q424 755 552 722Z" stroke="white" stroke-width="24" filter="url(#glow)" opacity=".65"/>
+<path d="M552 722 1290 533Q1406 499 1406 619L1406 868Q1406 941 1331 963L561 1168Q431 1208 431 1080L430 849Q424 755 552 722Z" stroke="white" stroke-width="23"/>
+<path fill="url(#grille)" d="M559 744 1288 552Q1382 525 1383 627L1383 856Q1383 920 1323 940L569 1143Q465 1175 462 1072L460 856Q456 774 559 744Z"/>
+<g clip-path="url(#front)"><path d="m817 1090 3-43q1-38 38-50l181-49q46-14 47 39v46Z" fill="#000"/>
+<g transform="matrix(1 -.26 0 1 848 1057)" stroke="white" stroke-width="6" stroke-linejoin="round" stroke-linecap="square">
+<path d="M0 0 34-51M0-51 34 0M49 0V-51H69Q95-51 92-38Q91-28 70-26H49M70-26Q99-27 95-11Q93 1 70 0H49M113-46Q142-62 145-41Q145-27 129-26Q150-27 148-10Q145 8 116 0M180-53Q200-54 200-26Q200 2 180 2Q162 2 162-26Q162-52 180-53Z"/>
+</g></g></svg>

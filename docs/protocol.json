@@ -1,0 +1,178 @@
+{
+  "schemaVersion": "1.1",
+  "device": {
+    "model": "SRS-XB30",
+    "firmwareObserved": "1.00",
+    "referenceApp": "Sony Music Center 7.6.1"
+  },
+  "transport": {
+    "bluetooth": "Classic BR/EDR",
+    "sdpServiceName": "com.sony.songpal.tandem",
+    "serviceHost": "Phone or Mac controller (RFCOMM server); speaker initiates the connection",
+    "serviceUUID": "91819D50-5D72-4478-A001-29EB2C763568",
+    "channelPolicy": "Publish a local RFCOMM service and accept the speaker connection on the assigned local channel. Android advertised channel 6 in capture record 450.",
+    "macOSPublicAPITest": "Verified direct incoming RFCOMM, full bootstrap, all nine initial reads and 47 write/readback operations. See XB30-Mac-Hardware-Validation.log.",
+    "macOSRecovery": "This Mac can retain stale SDP records after process exit despite remove returning success. Reuse the record within a process; the explicit Restore Bluetooth button cycles the radio to clear stale records, temporarily disconnecting other accessories."
+  },
+  "tandem": {
+    "frame": "3E + escaped(dataType, sequence, uint32be(payload length), payload, sum8) + 3C",
+    "dataType": 0,
+    "ackType": 1,
+    "sequence": "Start DATA at 0. After the ACK for a DATA, use the ACK sequence for the next DATA. ACK received DATA with 1 - incomingSequence.",
+    "bootstrap": [
+      "0F 01",
+      "01 HH MM SS (BCD)",
+      "05 00 00 05",
+      "0F 02",
+      "wait for CONNECT_LINK_COMPLETE 03",
+      "0F 00"
+    ]
+  },
+  "settings": [
+    {
+      "id": "volume",
+      "group": "Sound",
+      "read": "91 01",
+      "response": "92 01 vv or 94 01 vv",
+      "write": "93 01 02 vv",
+      "range": {
+        "min": 0,
+        "max": 50
+      },
+      "verified": "Capability 06 01 01 33 declares 51 levels (0-50). Reads and writes verified; earlier requests 47-50 were limited to 46. Andrea subsequently confirmed 50/50 at full charge both on AC and battery. The charge threshold remains unknown. Do not misreport 46 as 36 percent or hardcode it as the universal maximum.",
+      "macVerified": true
+    },
+    {
+      "id": "clear_audio_plus",
+      "group": "Sound",
+      "read": "91 11 FF FF 00",
+      "response": "92 11 FF FF ...",
+      "writeOn": "93 11 FF FF 01 01 01",
+      "writeOff": "93 10 00 FF 00 00",
+      "writeOffMeaning": "Music Center disables ClearAudio+ by selecting the FLAT preset; a diagnostic direct OFF write was ignored while Extra Bass locked ClearAudio+ on.",
+      "verified": "ON selects Extra Bass. Reply byte 6 is editability (0 enabled, 1 disabled); byte 9 is on/off. With Extra Bass, ClearAudio+ is on and disabled. Selecting FLAT clears it.",
+      "macVerified": true
+    },
+    {
+      "id": "sound_preset",
+      "group": "Sound",
+      "read": "91 10 0F FF 00",
+      "response": "92 10 ...",
+      "values": {
+        "FLAT": "93 10 00 FF 00 00",
+        "EXTRA_BASS": "93 10 01 FF 00 00"
+      },
+      "verified": "Both UI choices captured and restored.",
+      "macVerified": true,
+      "sideEffect": "EXTRA BASS activated ClearAudio+ and FLAT disabled it in the direct Mac test; observe both fields."
+    },
+    {
+      "id": "equalizer",
+      "group": "Sound",
+      "read": "91 10 1F FF 00",
+      "response": "92 10 1F FF 00 00 00 10 06 01 bb 02 mm 03 tt",
+      "write": "93 10 10 FF 10 06 01 bb 02 mm 03 tt",
+      "encoding": "bass/middle/treble user range -10..10 is encoded as byte userValue + 11 (01..15).",
+      "verified": "Each band was changed independently and restored to 0/0/0.",
+      "macVerified": true,
+      "metadataRead": "91 10 1F FF 01 (band frequencies, not gain values)"
+    },
+    {
+      "id": "auto_standby",
+      "group": "Power Option",
+      "read": "F2 12 1F FF",
+      "response": "F3 12 1F FF ... value",
+      "values": {
+        "OFF": "F4 12 1F FF 01 01 00",
+        "ON": "F4 12 1F FF 01 01 01"
+      },
+      "verified": "Both values captured and restored to ON.",
+      "macVerified": true
+    },
+    {
+      "id": "bluetooth_standby",
+      "group": "Power Option",
+      "read": "F2 12 2F FF",
+      "response": "F3 12 20 FF 00 00 00 01 (ON), or F3 12 21 FF 00 00 00 01 (OFF)",
+      "values": {
+        "ON": "F4 12 20 FF 00 00",
+        "OFF": "F4 12 21 FF 00 00"
+      },
+      "verified": "Both values captured and restored to OFF.",
+      "macVerified": true
+    },
+    {
+      "id": "battery_level",
+      "group": "Power Option",
+      "read": "F2 12 3F FF",
+      "response": "F3 12 3F FF ... 21 length UTF-8-text",
+      "readonly": true,
+      "verified": "Observed response text: About 50%; confirmed again from the live Music Center Power Option page on 2026-09-09.",
+      "macVerified": true
+    },
+    {
+      "id": "lighting_mode",
+      "group": "Illumination",
+      "read": "F2 11 1F FF",
+      "response": "F3 11 id FF 00 00 ...",
+      "writeTemplate": "F4 11 id FF 00 00",
+      "values": {
+        "10": "LIGHT OFF",
+        "11": "RAVE",
+        "12": "CHILL",
+        "13": "RANDOM FLASH OFF",
+        "14": "HOT",
+        "15": "COOL",
+        "16": "STROBE",
+        "17": "CALM MAGENTA",
+        "18": "CALM CYAN",
+        "19": "CALM LIME",
+        "1A": "CALM CINNABAR",
+        "1B": "CALM DAYLIGHT",
+        "1C": "CALM LIGHT BULB"
+      },
+      "verified": "All thirteen modes selected from Music Center and returned to LIGHT OFF.",
+      "macVerified": true
+    },
+    {
+      "id": "bluetooth_codec",
+      "group": "Bluetooth Codec",
+      "read": "F2 20 01 0F FF",
+      "response": "F3 20 01 vv FF 00 00 ...",
+      "values": {
+        "AUTO": "F4 20 01 00 FF 00 00",
+        "SBC": "F4 20 01 01 FF 00 00"
+      },
+      "sideEffect": "The audio profile may reconfigure asynchronously after a write.",
+      "verified": "AUTO and SBC selected and AUTO restored.",
+      "macVerified": true
+    }
+  ],
+  "capabilityBoundary": {
+    "menuSections": [
+      "Sound",
+      "Power Option",
+      "Illumination",
+      "Other settings"
+    ],
+    "announcedGroups": [
+      "Sound",
+      "Power Option",
+      "Illumination",
+      "Bluetooth Codec"
+    ],
+    "notAnnouncedAsASetting": [
+      "Speaker Add",
+      "Party Chain",
+      "Stereo Pair"
+    ],
+    "note": "Those generic Sony Music Center features are not a controllable setting advertised by this single XB30 in the captured session, so no speculative command is included."
+  },
+  "evidence": {
+    "capture": "settings-exhaustive-20260909.log",
+    "validation": "Every Tandem frame used above has a valid checksum; writable values were changed through Music Center and restored.",
+    "macCapture": "XB30-Mac-Hardware-Validation.log",
+    "macValidation": "47 PASS operations including initial recovery and final baseline restore; full initial values including About 50% battery.",
+    "scope": "The exposed XB30 Settings surface and volume; not every reserved field or every Sony device protocol."
+  }
+}

@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" viewBox="100 325 1390 970"><defs><mask id="artwork" maskUnits="userSpaceOnUse" x="100" y="325" width="1390" height="970"><g fill="none">
+  <sodipodi:namedview
+     id="namedview10"
+     pagecolor="#ffffff"
+     bordercolor="white000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.42886598"
+     inkscape:cx="918.70193"
+     inkscape:cy="575.9375"
+     inkscape:window-width="1690"
+     inkscape:window-height="711"
+     inkscape:window-x="0"
+     inkscape:window-y="34"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg10" />
+  <title
+     id="title1">XB30 Control</title>
+  <defs
+     id="defs2">
+    <pattern
+       id="grille"
+       width="17"
+       height="17"
+       patternUnits="userSpaceOnUse"
+       patternTransform="matrix(1 -.26 0 1 0 0)">
+      <circle
+         cx="4"
+         cy="4"
+         r="4.2"
+         fill="black"
+         id="circle1" />
+      <circle
+         cx="12.5"
+         cy="12.5"
+         r="4.2"
+         fill="black"
+         id="circle2" />
+    </pattern>
+    <filter
+       id="glow"
+       x="-0.027029348"
+       y="-0.040491855"
+       width="1.0540711"
+       height="1.0810491">
+      <feGaussianBlur
+         stdDeviation="6"
+         id="feGaussianBlur2" />
+    </filter>
+    <clipPath
+       id="front">
+      <path
+         d="M559 744 1288 552Q1382 525 1383 627L1383 856Q1383 920 1323 940L569 1143Q465 1175 462 1072L460 856Q456 774 559 744Z"
+         id="path2" />
+    </clipPath>
+  </defs>
+  <path
+     fill="white"
+     d="M158 724Q150 600 274 567L1062 397Q1112 380 1159 396L1355 451Q1443 470 1443 596L1444 868Q1443 980 1343 1009L482 1233Q411 1253 358 1208L215 1097Q168 1065 166 987Z"
+     id="path3" />
+  <path
+     d="M172 640 443 768M358 1208Q335 1167 335 1091L332 806Q326 691 443 657L1322 455Q1407 431 1414 490Q1420 520 1390 548M1391 936 1425 964M365 1208Q406 1220 453 1165"
+     stroke="black"
+     stroke-width="7"
+     id="path4" />
+  <path
+     d="M552 722 1290 533Q1406 499 1406 619L1406 868Q1406 941 1331 963L561 1168Q431 1208 431 1080L430 849Q424 755 552 722Z"
+     stroke="black"
+     stroke-width="24"
+     filter="url(#glow)"
+     opacity=".65"
+     id="path5" />
+  <path
+     d="M552 722 1290 533Q1406 499 1406 619L1406 868Q1406 941 1331 963L561 1168Q431 1208 431 1080L430 849Q424 755 552 722Z"
+     stroke="black"
+     stroke-width="23"
+     id="path6" />
+  <path
+     fill="url(#grille)"
+     d="M559 744 1288 552Q1382 525 1383 627L1383 856Q1383 920 1323 940L569 1143Q465 1175 462 1072L460 856Q456 774 559 744Z"
+     id="path7" />
+  <g
+     clip-path="url(#front)"
+     id="g10">
+    <path
+       d="m817 1090 3-43q1-38 38-50l181-49q46-14 47 39v46Z"
+       fill="white"
+       id="path8" />
+    <g
+       transform="matrix(1 -.26 0 1 848 1057)"
+       stroke="black"
+       stroke-width="6"
+       stroke-linejoin="round"
+       stroke-linecap="square"
+       id="g9" />
+  </g>
+</g></mask></defs><rect x="100" y="325" width="1390" height="970" fill="black" mask="url(#artwork)"/></svg>

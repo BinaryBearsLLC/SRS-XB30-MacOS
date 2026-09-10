@@ -1,0 +1,64 @@
+name: Signed macOS release
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  macos:
+    runs-on: macos-15
+    timeout-minutes: 75
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Validate release version
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: bash
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          version=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' Info.plist)
+          [[ "$RELEASE_TAG" == "v$version" ]] || { echo 'Tag and app version differ'; exit 1; }
+      - name: Test without Bluetooth hardware
+        run: ./test.sh
+      - name: Install DMG packaging tools
+        run: |
+          python3 -m venv "$RUNNER_TEMP/dmg-venv"
+          "$RUNNER_TEMP/dmg-venv/bin/pip" install -r packaging/requirements.txt
+          echo "DMG_PYTHON=$RUNNER_TEMP/dmg-venv/bin/python" >> "$GITHUB_ENV"
+      - name: Configure ephemeral Apple signing
+        env:
+          APPLE_API_KEY_BASE64: ${{ secrets.APPLE_API_KEY_BASE64 }}
+          APPLE_API_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}
+          APPLE_API_ISSUER_ID: ${{ secrets.APPLE_API_ISSUER_ID }}
+          APPLE_CERTIFICATE_P12_BASE64: ${{ secrets.APPLE_CERTIFICATE_P12_BASE64 }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          APPLE_SIGNING_IDENTITY: ${{ secrets.APPLE_SIGNING_IDENTITY }}
+        run: python3 scripts/ci/signing.py setup
+      - name: Build universal hardened-runtime app
+        run: ./build.sh
+      - name: Notarize app and branded DMG
+        run: scripts/ci/notarize.sh
+      - name: Upload signed installer
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: XB30-Controller-signed
+          path: |
+            build/XB30-Controller.dmg
+            build/XB30-Controller.dmg.sha256
+          if-no-files-found: error
+      - name: Publish tagged release
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          gh release create "$RELEASE_TAG" build/XB30-Controller.dmg build/XB30-Controller.dmg.sha256 --verify-tag --title "XB30 Controller $RELEASE_TAG" --generate-notes
+      - name: Remove ephemeral signing material
+        if: always()
+        run: python3 scripts/ci/signing.py cleanup
