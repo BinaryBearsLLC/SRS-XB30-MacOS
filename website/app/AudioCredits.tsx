@@ -1,4 +1,5 @@
 'use client';
+/* oxlint-disable jsx-a11y/no-static-element-interactions -- This wrapper delegates hover, blur and Escape across its native button and credit links; it is not itself a focus target. */
 import {useState} from 'react';
 import {tracks} from './tracks';
 export default function AudioCredits({track}:{track:number}){

@@ -1,5 +1,4 @@
 'use client';
-/* oxlint-disable next/no-img-element -- The exact supplied menubar SVG is used without image transformation. */
 /* oxlint-disable jsx-a11y/media-has-caption -- Music demo without dialogue; track titles and creator credits are available beside the player. */
 import {Suspense,lazy,useEffect,useRef,useState} from 'react';
 import {Pause,Play,Rotate3D,Download,Code2} from 'lucide-react';

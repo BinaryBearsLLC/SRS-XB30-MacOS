@@ -1,5 +1,4 @@
 'use client';
-/* oxlint-disable next/no-img-element -- Exact local native-app artwork is reused at its display size. */
 import {useState} from 'react';
 import {Activity,Check,Volume2,Lightbulb,LightbulbOff,Info,Radio,Settings,ChevronDown,ChevronUp,CircleHelp,Ellipsis,SlidersHorizontal,Zap,Sparkles} from 'lucide-react';
 import {Slider} from '@/components/ui/slider';

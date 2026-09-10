@@ -1,5 +1,4 @@
 'use client';
-/* oxlint-disable next/no-img-element -- The fallback uses the supplied local 3D render. */
 /* oxlint-disable jsx-a11y/prefer-tag-over-role -- This labeled host contains an interactive WebGL canvas, not a static image. */
 import {useEffect,useLayoutEffect,useRef,useState} from 'react';
 import * as T from 'three';
