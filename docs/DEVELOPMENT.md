@@ -2,7 +2,7 @@
 
 ## Build and test
 
-Xcode command-line tools are required. `./build.sh` produces a universal app in `build/XB30-Control.app`, targeting macOS 13. `./test.sh --ui` runs protocol/controller/log regressions and renders native UI previews. `./hardware-test.sh --exercise` and `./hardware-test.sh --controller` require the paired speaker and change its settings; do not run them as ordinary CI.
+Xcode 26 with the macOS 26 SDK is required to preserve the reviewed native control appearance. GitHub native builds explicitly select Xcode 26.6 on macos-26; the deployment target remains macOS 13. Older SDKs silently opt the app into legacy controls even on Tahoe, so build.sh rejects them. `./build.sh` produces a universal app in `build/XB30-Control.app`, targeting macOS 13. `./test.sh --ui` runs protocol/controller/log regressions and renders native UI previews. `./hardware-test.sh --exercise` and `./hardware-test.sh --controller` require the paired speaker and change its settings; do not run them as ordinary CI.
 
 The app uses a native SwiftUI/AppKit menu bar popover. Its hosting controller follows content size: about 440×443 pt closed and 440×575 pt with EQ. Left-click opens the panel; right-click exposes Quit. No appearance selector or internal scrolling.
 
@@ -53,3 +53,5 @@ Local preparation (0.2.3): universal build, offline protocol/controller/log test
 The web model uses a byte-identical gzip transport (11,065,396 → 2,583,734 bytes), decompressed with DecompressionStream and parsed by GLTFLoader. Browsers without that API retain the original GLB fallback. Three.js is loaded separately from the initial control UI.
 
 Public validation — 2026-09-10: GitHub Pages is at https://binarybearsllc.github.io/SRS-XB30-MacOS/. Lighthouse scored desktop 100/100/100/100 and mobile 92/100/100/100 (performance/accessibility/best practices/SEO); mobile LCP 2.0 s, total blocking time 290 ms, CLS 0. These are laboratory runs with simulated mobile throttling, not measurements on a physical phone. Public browser checks covered both music tracks, volume, Extra Bass/EQ locking, simulated connection, all 12 palette tiles plus Off, help/About/credits, and 320/390 px mobile and 1024/1366/1440 px desktop layouts. The compressed model was the only model downloaded. The release DMG SHA-256 is `31c1f0e920e2ae55336a97c8f759836791a7932ad3bfd6c6f4042f18eb6bf4fb`.
+
+Recloning restores app/site sources, tests, final runtime assets, icons and DMG tooling. It does not restore ignored `3D_Model/` originals/intermediates/Blender sources, `.local-archive/` research and model scripts, diagnostic outputs, `old_research_docs.zip`, or local-only branches. Preserve those outside the checkout before deleting it. npm dependencies and build outputs are reproducible. Apple credentials remain outside the checkout and GitHub Secrets are stored with the repository, not in a clone.

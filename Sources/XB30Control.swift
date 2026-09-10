@@ -813,6 +813,7 @@ final class SessionLog {
     let lights = XB30Command.lightNames
 
     init() {
+        sessionLog.append("BUILD SDK \(Bundle.main.object(forInfoDictionaryKey:"XB30BuildSDK") as? String ?? "development") · revision \(Bundle.main.object(forInfoDictionaryKey:"XB30BuildCommit") as? String ?? "development")")
         sessionLog.append("SESSION START XB30 Controller \(Bundle.main.object(forInfoDictionaryKey:"CFBundleShortVersionString") as? String ?? "development") · \(ProcessInfo.processInfo.operatingSystemVersionString)")
         logStatusChanges=transport.$status.removeDuplicates().sink { [weak self] in self?.sessionLog.append("STATE "+$0) }
         // Raw wire logs/status do not invalidate the interface. Only meaningful state transitions do.

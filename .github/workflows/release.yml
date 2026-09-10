@@ -10,7 +10,9 @@ concurrency:
   cancel-in-progress: false
 jobs:
   macos:
-    runs-on: macos-15
+    runs-on: macos-26
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
     timeout-minutes: 75
     permissions:
       contents: write
@@ -25,7 +27,13 @@ jobs:
           version=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' Info.plist)
           [[ "$RELEASE_TAG" == "v$version" ]] || { echo 'Tag and app version differ'; exit 1; }
       - name: Test without Bluetooth hardware
-        run: ./test.sh
+        run: ./test.sh --ui
+      - name: Upload native visual checks
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: XB30-native-UI-review
+          path: build/native-review/*.png
+          if-no-files-found: error
       - name: Install DMG packaging tools
         run: |
           python3 -m venv "$RUNNER_TEMP/dmg-venv"
