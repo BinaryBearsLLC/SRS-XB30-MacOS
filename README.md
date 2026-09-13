@@ -10,6 +10,17 @@ Change volume, Flat/Extra Bass, three-band EQ, lighting and standby settings. Co
 
 Pair the speaker in macOS Bluetooth Settings, open the app and click **Connect**. Extra Bass also enables ClearAudio+ on this model. Battery readings are approximate; the speaker may limit maximum volume until charged. Auto/SBC selects a Bluetooth preference, not a guaranteed active codec.
 
+Volume limits are controlled by the speaker firmware. Tests showed different limits at the same approximate battery reading; the app reports the level confirmed by the speaker.
+
 Build locally with Xcode 26 (macOS SDK 26+) and `./build.sh`; run offline checks with `./test.sh`. See [development and release notes](docs/DEVELOPMENT.md) for the protocol, packaging and GitHub signing workflow. GitHub releases include a Developer ID signed, notarized universal DMG. Local builds are ad-hoc signed.
+
+## Next steps
+
+Some connection attempts establish Bluetooth without opening the speaker's control session. This needs further testing.
+
+- Test connection and reconnection on M2/M5, with and without other Bluetooth devices.
+- Cover sleep/wake, speaker power cycles, dropped connections and repeated retries.
+- Improve recovery when Bluetooth connects but the control session does not.
+- Add clearer connection diagnostics and mark unconfirmed device readings.
 
 Made by [BinaryBears](https://binarybears.com). Independent software, not affiliated with Sony.
