@@ -32,6 +32,7 @@ jobs:
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: XB30-native-UI-review
+          retention-days: 3
           path: build/native-review/*.png
           if-no-files-found: error
       - name: Install DMG packaging tools
@@ -56,6 +57,7 @@ jobs:
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: XB30-Controller-signed
+          retention-days: 3
           path: |
             build/XB30-Controller.dmg
             build/XB30-Controller.dmg.sha256
